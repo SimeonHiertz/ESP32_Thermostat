@@ -70,6 +70,7 @@ write15.text("Starting up", 0, 0)
 oled.show()
 
 Temperatursensor=temp(4)
+maxtemp=80
 Relais=switch(2)
 
 #### MAINPART ####
@@ -81,15 +82,22 @@ write15.text("successful!", 0, 15)
 oled.show()
 tmp=0
 while True:
-    oled.fill(0)
-    temp=Temperatursensor.read_temperature()
-    string_data=f"Temp: {temp:.3} C"
-    write15.text(string_data, 0, 0)
-    oled.show()
-    print(f"Temperatur: {temp:.3}°C")
-    tmp=temp
-    if tmp<30:
-        Relais.switch_on()
-    else:
+    try:
+        oled.fill(0)
+        temp=Temperatursensor.read_temperature()
+        string_data=f"Temp: {temp:.3} C"
+        write15.text(string_data, 0, 0)
+        oled.show()
+        print(f"Temperatur: {temp:.3}°C")
+        tmp=temp
+        if tmp<maxtemp:
+            Relais.switch_on()
+        else:
+            Relais.switch_off()
+        time.sleep_ms(500)
+    except:
+        print("Something went wrong.")
+        oled.fill(0)
+        write15.text("ERROR")
+        oled.show()
         Relais.switch_off()
-    time.sleep_ms(500)
