@@ -29,13 +29,16 @@ def do_connect():
     
 class switch():
     def __init__(self, pin):
-        self.led=machine.Pin(pin,machine.Pin.OUT)
+        self.led=machine.Pin(2,machine.Pin.OUT)
+        self.output=machine.Pin(pin,machine.Pin.OUT)
 
     def switch_on(self):
         self.led.value(1)
+        self.output.value(1)
 
     def switch_off(self):
         self.led.value(0)
+        self.output(0)
 
 
 class temp():
@@ -71,7 +74,7 @@ oled.show()
 
 Temperatursensor=temp(4)
 maxtemp=80
-Relais=switch(2)
+Relais=switch(23)
 
 #### MAINPART ####
 oled.fill(0)
