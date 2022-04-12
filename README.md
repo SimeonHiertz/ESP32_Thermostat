@@ -12,4 +12,4 @@ Display:
 https://www.reichelt.de/de/de/arduino-display-0-96-oled-display-ssd1306-ard-oled-0-96-p320600.html?&nbc=1
 Connected with Soft_I2C, sda=GPIO26, scl=GPIO25
 
-Connection to solid state relais to be made.
+Connection to solid state relais on GPIO23.
